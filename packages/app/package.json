@@ -1,17 +1,19 @@
 {
-  "name": "teste",
+  "name": "app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "concurrently": "^6.4.0",
-    "dotenv-webpack": "^7.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "wsrun": "^5.2.4"
   },
   "scripts": {
-    "start": "concurrently \"wsrun --parallel start\""
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -19,9 +21,6 @@
       "react-app/jest"
     ]
   },
-  "workspaces": [
-		"packages/*"
-	],
   "browserslist": {
     "production": [
       ">0.2%",

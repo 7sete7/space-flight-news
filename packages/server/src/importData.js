@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import axios from "axios";
 
-export default (req, res) => {
+export default async () => {
   const startTime = process.hrtime();
 
   MongoClient.connect(process.env.MONGO_URL, {
@@ -27,16 +27,19 @@ export default (req, res) => {
         inserted: nInserted,
         time: parseFloat(process.hrtime(startTime).join("."))
       }
-      res.contentType("application/json").send(payload);
       
+      connection.close();
+      return payload;
     } catch(e) {
       console.error(e);
+      connection.close();
+      throw e;
     }
-    connection.close();
   })
   .catch(error => {
     console.error(error);
-    res.statusCode(500).end();
+    connection.close();
+    throw error;
   });
 };
 

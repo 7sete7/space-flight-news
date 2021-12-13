@@ -5,11 +5,18 @@ const auxiliar = { main: "#1E2022" };
 const theme = {
   typography: {
     fontFamily: "Roboto-condensed,Roboto,Arial",
+    h1: {
+      fontSize: "22pt",
+    },
   },
-  pallete: {
+  palette: {
     primary,
     secondary,
     auxiliar,
+
+    text: {
+      primary: auxiliar,
+    },
   },
   components: {
     MuiTextField: {
@@ -17,10 +24,27 @@ const theme = {
         root: {
           "& input": {
             padding: "5px 8px",
-          }
+          },
+          "& fieldset": {
+            borderColor: "gray",
+          },
         },
       },
     },
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          padding: "5px 8px",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          boxShadow: "none"
+        }
+      }
+    }
   },
 };
 

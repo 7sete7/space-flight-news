@@ -8,6 +8,9 @@ const theme = {
     h1: {
       fontSize: "22pt",
     },
+    caption: {
+      fontStyle: "italic",
+    },
   },
   palette: {
     primary,
@@ -15,7 +18,7 @@ const theme = {
     auxiliar,
 
     text: {
-      primary: auxiliar,
+      primary: auxiliar.main,
     },
   },
   components: {
@@ -41,10 +44,17 @@ const theme = {
     MuiCard: {
       styleOverrides: {
         root: {
-          boxShadow: "none"
-        }
-      }
-    }
+          boxShadow: "none",
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+        },
+      },
+    },
   },
 };
 

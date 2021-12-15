@@ -1,19 +1,29 @@
 import express from "express";
 import importData from "./importData";
 import { CronJob } from "cron";
+import cors from "cors";
 
 import { articles, articleById } from "./routes";
 
 const app = express();
 
+// app.use(
+//   cors({
+//     origin: (value, cb) =>
+//       {
+//         console.log(value, process.env.ALLOWED_ORIGIN);
+//         return process.env.ALLOWED_ORIGIN.includes(value) ? cb(null, true) : cb(new Error("no >:("))
+//       },
+//   })
+// );
+app.use(cors());
+
 app.get("/", (_, res) => res.status(200).send("Fullstack Challenge 2021 🏅 - Space Flight News"));
 
 app.get("/articles", articles);
 app.get("/article/:id", articleById);
-app.get("/import", async (_, res) => 
-  importData()
-    .then(res.contentType("application/json").send)
-    .catch(res.status(500).send)
+app.get("/import", async (_, res) =>
+  importData().then(res.contentType("application/json").send).catch(res.status(500).send)
 );
 
 app.listen(8000, () => console.log("listening"));

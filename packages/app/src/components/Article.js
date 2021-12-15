@@ -1,10 +1,10 @@
-import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
+import { Box, Typography, Card, CardContent, CardMedia, Button, Grid } from "@mui/material";
 import { formatDate } from "../utils/format";
 import truncate from "lodash/truncate";
 
-import Button from "./Button";
+// import Button from "./Button";
 
-// orientation={intex%2}
+// orientation={index%2}
 const Article = ({ orientation, data = {} }) => {
   return (
     <Card raised={false} sx={{ marginBottom: "3rem" }}>
@@ -16,12 +16,21 @@ const Article = ({ orientation, data = {} }) => {
             {data.title}
           </Typography>
           <Box display="flex" justifyContent="space-between" width="100%">
-            <Typography>{formatDate(data.createdAt)}</Typography>
-            <Button variant="outline" style={{ paddin: "3px 2px", background: "none", border: "1px solid grey" }}>new site</Button>
+            <Typography variant="caption">{formatDate(data.createdAt)}</Typography>
+            <Button variant="outlined" color="auxiliar" style={{ padding: "2px 8px" }}>
+              new site
+            </Button>
           </Box>
 
           <Typography>{truncate(data.description, 120)}</Typography>
-          <Button variant="contained" bg="primary.main" style={{ border: "none" }}>Ver mais</Button>
+          <Grid container>
+            <Grid item xs={8} sm={4}>
+              <Button fullWidth variant="contained" disableElevation>
+                Ver mais
+              </Button>
+            </Grid>
+          </Grid>
+
         </Box>
       </CardContent>
 

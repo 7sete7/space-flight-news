@@ -6,16 +6,18 @@
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.1",
-    "@mui/material": "^5.2.3",
+    "@mui/material": "^5.2.4",
     "@mui/styles": "^5.2.3",
     "concurrently": "^6.4.0",
+    "env-cmd": "^10.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "wsrun": "^5.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "env-cmd -f ../../.env npm run start:app",
+    "start:app": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

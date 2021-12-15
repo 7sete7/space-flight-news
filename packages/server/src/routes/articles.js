@@ -21,6 +21,6 @@ export default async function fetchArticles(req, res) {
     res.contentType("application/json").send(articles);
   } catch(e) {
     console.error(e);
-    res.statusCode(500).send(e);
+    res.status(500).send(e);
   }
 }

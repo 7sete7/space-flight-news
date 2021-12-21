@@ -2,8 +2,6 @@ import { Box, Typography, Card, CardContent, CardMedia, Button, Grid } from "@mu
 import { formatDate } from "../utils/format";
 import truncate from "lodash/truncate";
 
-// import Button from "./Button";
-
 // orientation={index%2}
 const Article = ({ orientation, data = {} }) => {
   return (

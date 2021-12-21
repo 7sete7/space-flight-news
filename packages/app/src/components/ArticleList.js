@@ -8,13 +8,13 @@ const ArticleList = () => {
   const [config, setConfig] = useState({ order: "", page: 1, loading: true });
 
   useEffect(() => {
-    if (!config.loading) setConfig(c => ({ ...c, loading: true }));
+    setConfig(c => ({ ...c, loading: true }));
 
     fetchArticles(config).then(data => {
       if (data) {
         setArticles(data);
         setConfig(c => ({ ...c, loading: false }));
-      } else setConfig(c => ({ ...c, isLastPage: true }));
+      } else setConfig(c => ({ ...c, isLastPage: true, loading: false }));
     });
   }, [config.order, config.page]);
 
@@ -22,7 +22,7 @@ const ArticleList = () => {
     <>
       {config.loading && <h3>Loading</h3>}
 
-      {!config.loading && articles.fill(1).map((_, index) => <Article orientation={index % 2} />)}
+      {!config.loading && articles.map((data, index) => <Article data={data} orientation={index % 2} />)}
     </>
   );
 };

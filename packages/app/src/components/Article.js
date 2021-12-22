@@ -15,7 +15,7 @@ const Article = ({ orientation, data = {}, classes }) => (
           {data.title}
         </Typography>
         <Box display="flex" justifyContent="space-between" width="100%">
-          <Typography variant="caption">{formatDate(data.createdAt)}</Typography>
+          <Typography variant="caption">{formatDate(data.publishedAt)}</Typography>
           {data.newsSite ? (
             <Typography variant="subtitle2" color="blue">
               {data.newsSite}

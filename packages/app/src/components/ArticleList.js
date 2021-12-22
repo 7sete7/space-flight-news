@@ -23,7 +23,10 @@ const ArticleList = ({ filter, mergeFilter }) => {
     });
   }, [filter.order, filter.page, filter.text, setArticles]);
 
-  const onLoadMoreClick = useCallback(() => mergeFilter({ page: filter.page + 1, shouldReset: false }), [filter.page]);
+  const onLoadMoreClick = useCallback(() => {
+    console.log(filter.page);
+    mergeFilter({ page: filter.page + 1, shouldReset: false })
+  }, [filter.page]);
   const updateFeed = useCallback(() => {
     if (filter.shouldReset) {
       mergeFilter({ shouldReset: false });

@@ -1,8 +1,7 @@
 import { Box, Divider, Typography, Container } from "@mui/material";
 import RocketIcon from "@mui/icons-material/RocketLaunchRounded";
-import withTheme from "@mui/styles/withTheme";
 
-const Hero = ({ theme }) => (
+const Hero = () => (
   <>
     <Box minHeight="20vh" p={2} mb={5} display="flex" justifyContent="center" alignItems="center">
       <Container sx={{ textAlign: "center" }}>
@@ -14,12 +13,12 @@ const Hero = ({ theme }) => (
           py={2.4}
           borderRadius={50}
           border="2px solid"
-          borderColor="grey.400"
+          borderColor="secondary.main"
         >
           <RocketIcon style={{ fontSize: "xxx-large" }} color="primary.main" />
         </Box>
-        <Typography variant="h1" color="grey.700">
-          Space Fligh News
+        <Typography variant="h1" color="textPrimary">
+          Space Flight News
         </Typography>
       </Container>
     </Box>
@@ -27,4 +26,4 @@ const Hero = ({ theme }) => (
   </>
 );
 
-export default withTheme(Hero);
+export default Hero;

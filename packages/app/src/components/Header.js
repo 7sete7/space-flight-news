@@ -1,10 +1,14 @@
 import React, { useCallback, useState } from "react";
 
 import { Grid, Box, TextField, Select, MenuItem, InputLabel, FormControl, IconButton } from "@mui/material";
+import { useTheme } from "@mui/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Header = ({ filter, mergeFilter }) => {
   const [text, setText] = useState("");
+  const theme = useTheme();
+  const isXs = useMediaQuery(theme.breakpoints.only("xs"));
 
   const onChange = useCallback(({ target }) => setText(target.value), []);
   const onSubmit = useCallback(
@@ -21,9 +25,9 @@ const Header = ({ filter, mergeFilter }) => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1, padding: "20px 30px" }}>
+    <Box sx={{ flexGrow: 1, padding: "20px 10px" }}>
       <Grid container spacing={1}>
-        <Grid item xs={0} sm={2} md={6} />
+        {!isXs && <Grid item xs={0} sm={2} md={6} />}
         <Grid item>
           <Box sx={{ position: "relative" }}>
             <form onSubmit={onSubmit}>

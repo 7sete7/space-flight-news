@@ -6,8 +6,8 @@ import { withStyles } from "@mui/styles";
 
 // orientation == {index % 2} == [1 | 0]
 const Article = ({ orientation, data = {}, classes }) => (
-  <Card raised={false} sx={{ marginBottom: "5rem", display: "flex" }}>
-    {!!orientation ? <CardMedia image={data.imageUrl} className={classes.image} /> : null}
+  <Card raised={false} className={classes.card}>
+    <CardMedia image={data.imageUrl} className={classes.image} />
 
     <CardContent className={classes.cardContent}>
       <Box display="flex" flexDirection="column">
@@ -24,31 +24,35 @@ const Article = ({ orientation, data = {}, classes }) => (
         </Box>
 
         <Typography paragraph sx={{ maxHeight: "75", overflow: "hidden" }}>
-          {truncate(
-            data.summary ||
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore ",
-            { length: 120 }
-          )}
+          {truncate(data.summary, { length: 120 })}
         </Typography>
 
         <Grid container>
           <Grid item xs={8} sm={4}>
-            <Button href={data.url} fullWidth variant="contained" disableElevation disabled={data.url == null}>
+            <Button href={data.url} target="_blank" fullWidth variant="contained" disableElevation disabled={data.url == null}>
               Ver mais
             </Button>
           </Grid>
         </Grid>
       </Box>
     </CardContent>
-
-    {!!orientation ? null : <CardMedia image={data.imageUrl} className={classes.image} />}
   </Card>
 );
 
 const style = theme => ({
+  card: {
+    marginBottom: "5rem",
+    display: "flex",
+    flexDirection: "column",
+
+    [theme.breakpoints.up("sm")]: {
+      flexDirection: ({ orientation }) => (orientation ? "row" : "row-reverse"),
+    },
+  },
+
   cardContent: {
     padding: 0,
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       padding: ({ orientation }) => `0 ${orientation ? 0 : 16}px 0 ${orientation ? 16 : 0}px`,
     },
   },
@@ -57,6 +61,11 @@ const style = theme => ({
     width: "95%",
     backgroundSize: "contain",
     backgroundPosition: "top",
+
+    [theme.breakpoints.down("sm")]: {
+      height: 150,
+      marginBottom: 10,
+    },
   },
 });
 

@@ -14,7 +14,7 @@ const App = () => {
       <Header {...usingFilter} />
       <Hero />
 
-      <Container maxWidth="sm" sx={{ padding: "3rem 5px" }}>
+      <Container maxWidth="sm" sx={{ padding: "3rem 16px" }}>
         <ArticleList {...usingFilter} />
       </Container>
     </>

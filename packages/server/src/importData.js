@@ -8,7 +8,6 @@ export default async () => {
   const client = await getMongo.connect();
 
   try {
-    console.log("connected");
     const db = client.db("SpaceFlight");
     const Articles = db.collection("Articles");
     const operations = [];
@@ -44,11 +43,12 @@ async function* getArticles() {
   let data;
   do {
     try {
+      console.log(start);
       ({ data } = await axios.get(
         `https://api.spaceflightnewsapi.net/v3/articles?_limit=500&_sort=id&_start=${start}`
       ));
       if (data && data.length) yield data;
-      start += 1000;
+      start += 500;
     } catch (e) {
       console.error(e);
       break;

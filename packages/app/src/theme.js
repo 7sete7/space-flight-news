@@ -11,6 +11,10 @@ const theme = {
     caption: {
       fontStyle: "italic",
     },
+    h6: {
+      fontWeight: "bold",
+      fontSize: "13pt",
+    }
   },
   palette: {
     primary,

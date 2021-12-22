@@ -4,15 +4,21 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import ArticleList from "./components/ArticleList";
 
-const App = () => (
-  <>
-    <Header />
-    <Hero />
+import useFilter from "./hooks/useFilter";
 
-    <Container maxWidth="sm" sx={{ padding: "3rem 5px" }}>
-      <ArticleList />
-    </Container>
-  </>
-);
+const App = () => {
+  const usingFilter = useFilter();
+
+  return (
+    <>
+      <Header {...usingFilter} />
+      <Hero />
+
+      <Container maxWidth="sm" sx={{ padding: "3rem 5px" }}>
+        <ArticleList {...usingFilter} />
+      </Container>
+    </>
+  );
+};
 
 export default App;

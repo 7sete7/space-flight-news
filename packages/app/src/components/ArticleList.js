@@ -1,29 +1,63 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Article from "./Article";
 
 import fetchArticles from "../DAL/fetchArticles";
 
-const ArticleList = () => {
+import { CircularProgress, Box, Slide, Button } from "@mui/material";
+
+const ArticleList = ({ filter, mergeFilter }) => {
   const [articles, setArticles] = useState([]);
-  const [config, setConfig] = useState({ order: "", page: 1, loading: true });
 
   useEffect(() => {
-    setConfig(c => ({ ...c, loading: true }));
+    mergeFilter({ loading: true });
 
-    fetchArticles(config).then(data => {
+    fetchArticles(filter).then(data => {
       if (data) {
-        setArticles(data);
-        setConfig(c => ({ ...c, loading: false }));
-      } else setConfig(c => ({ ...c, isLastPage: true, loading: false }));
+        setArticles(current => (filter.shouldReset ? data : current.concat(data)));
+        mergeFilter({ loading: false });
+      } else {
+        mergeFilter({ isLastPage: true, loading: false });
+      }
+
+      updateFeed();
     });
-  }, [config.order, config.page]);
+  }, [filter.order, filter.page, filter.text, setArticles]);
+
+  const onLoadMoreClick = useCallback(() => mergeFilter({ page: filter.page + 1, shouldReset: false }), [filter.page]);
+  const updateFeed = useCallback(() => {
+    if (filter.shouldReset) {
+      mergeFilter({ shouldReset: false });
+    }
+  }, [filter.shouldReset, filter.loading]);
 
   return (
-    <>
-      {config.loading && <h3>Loading</h3>}
+    <Box
+      width={1}
+      height={1}
+      display="flex"
+      alignItems="center"
+      flexDirection={filter.shouldReset ? "column-reverse" : "column"}
+    >
+      {(!filter.loading || articles.length > 0) && (
+        <Slide direction="right" in={!filter.shouldReset}>
+          <div>
+            {articles.map((data, index) => (
+              <Article data={data} orientation={index % 2} />
+            ))}
+          </div>
+        </Slide>
+      )}
 
-      {!config.loading && articles.map((data, index) => <Article data={data} orientation={index % 2} />)}
-    </>
+      {filter.loading && <CircularProgress />}
+
+      {!filter.loading && (
+        <Box width={1} textAlign="center">
+          <Button variant="outlined" color="secondary" onClick={onLoadMoreClick}>
+            Carregar mais posts
+          </Button>
+        </Box>
+      )}
+    </Box>
   );
 };
 

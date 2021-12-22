@@ -22,7 +22,7 @@ app.get("/", (_, res) => res.status(200).send("Fullstack Challenge 2021 🏅 - S
 
 app.get("/articles", articles);
 app.get("/article/:id", articleById);
-app.get("/import", async (_, res) =>
+app.get("/import", (_, res) =>
   importData().then(res.contentType("application/json").send).catch(res.status(500).send)
 );
 

@@ -13,7 +13,7 @@ WORKDIR /server
 RUN yarn
 
 RUN yarn build
-COPY dist/ .
+WORKDIR /server/build
 
 EXPOSE 8000
 

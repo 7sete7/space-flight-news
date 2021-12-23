@@ -6,7 +6,7 @@ module.exports = () => ({
   entry: "./src/index.js",
   target: "node",
   output: {
-    path: path.resolve(process.cwd(), "dist"),
+    path: path.resolve(process.cwd(), "build"),
     filename: "index.js",
   },
   resolve: {
@@ -32,8 +32,8 @@ module.exports = () => ({
 
   plugins: [
     new NodemonPlugin({
-      script: "./dist/index.js",
-      watch: [path.resolve("./dist")],
+      script: "./build/index.js",
+      watch: [path.resolve("./build")],
       ignore: ["*.js.map"],
       ext: "js,json",
       delay: "1000",

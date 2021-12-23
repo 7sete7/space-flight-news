@@ -12,7 +12,7 @@ WORKDIR /app
 RUN yarn
 
 RUN yarn build
-COPY build/ .
+WORKDIR /app/build
 
 EXPOSE 3000
 

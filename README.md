@@ -20,10 +20,10 @@ As portas usadas s√£o 3000 para o front e 8000 para o backend. Arquivo de env j√
 ##### Com Docker
 
 ```sh
-docker-compose up
+docker-compose up --build
 ```
 
-##### Com Npm
+##### Com Yarn
 
 ```sh
 yarn

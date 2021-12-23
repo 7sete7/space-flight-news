@@ -7,14 +7,7 @@ import { articles, articleById } from "./routes";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: (value, cb) =>
-      process.env.ALLOWED_ORIGIN && process.env.ALLOWED_ORIGIN.includes(value)
-        ? cb(null, true)
-        : cb(new Error("no >:(")),
-  })
-);
+app.use(cors())
 
 app.get("/", (_, res) => res.status(200).send("Fullstack Challenge 2021 🏅 - Space Flight News"));
 

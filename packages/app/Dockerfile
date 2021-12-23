@@ -9,10 +9,10 @@ ADD src /app/src
 
 WORKDIR /app
 
-RUN npm install
+RUN yarn
 
-RUN npm run build
-ADD build/ .
+RUN yarn build
+COPY build/ .
 
 EXPOSE 3000
 

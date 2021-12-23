@@ -10,10 +10,10 @@ ADD src /server/src
 
 WORKDIR /server
 
-RUN npm install
+RUN yarn
 
-RUN npm run build
-ADD dist/ .
+RUN yarn build
+COPY dist/ .
 
 EXPOSE 8000
 

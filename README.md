@@ -12,6 +12,11 @@ Esse projeto importa os artigos da SpaceFlight e expõe uma api, e uma aplicaç�
 
 ### Como rodar
 As portas usadas são 3000 para o front e 8000 para o backend. Arquivo de env já incluso.
+
+É necessário a instalação do [Yarn](https://classic.yarnpkg.com/lang/en/docs/install)
+
+`npm install --global yarn`
+
 ##### Com Docker
 
 ```sh
@@ -21,8 +26,8 @@ docker-compose up
 ##### Com Npm
 
 ```sh
-npm install
-npm start
+yarn
+yarn start
 ```
 
 > This is a challenge by [Coodesh](https://coodesh.com/)

@@ -12,11 +12,11 @@ const ArticleList = ({ filter, mergeFilter }) => {
     mergeFilter({ loading: true });
 
     fetchArticles(filter).then(data => {
-      if (data) {
-        setArticles(current => (filter.shouldReset ? data : current.concat(data)));
-        mergeFilter({ loading: false });
-      } else {
+      if (!data || data.length === 0) {
         mergeFilter({ isLastPage: true, loading: false });
+      } else {
+        setArticles(current => (filter.shouldReset ? data : current.concat(data)));
+        mergeFilter({ loading: false, isLastPage: data.length < 10 });
       }
 
       updateFeed();
@@ -50,7 +50,7 @@ const ArticleList = ({ filter, mergeFilter }) => {
 
       {filter.loading && <CircularProgress />}
 
-      {!filter.loading && (
+      {(!filter.loading && !filter.isLastPage) && (
         <Box width={1} textAlign="center">
           <Button variant="outlined" color="secondary" onClick={onLoadMoreClick}>
             Carregar mais posts

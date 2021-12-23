@@ -1,16 +1,28 @@
-# Getting Started with Create React App
+# SpaceFlight news website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-This project is my version for the challenge at [Gitlab](https://lab.coodesh.com/leonardogviva/space-flight-news-20210823).
+Esse projeto importa os artigos da SpaceFlight e expõe uma api, e uma aplicação que a consome.
 
-## Available Scripts
+--------
 
-In the project directory, you can run:
+### Tecnologias utilizadas
 
-### `yarn start`
+- Javascript / Node 
+- React
+- Material-ui
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Como rodar
+As portas usadas são 3000 para o front e 8000 para o backend. Arquivo de env já incluso.
+##### Com Docker
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```sh
+docker-compose up
+```
+
+##### Com Npm
+
+```sh
+npm install
+npm start
+```
+
+> This is a challenge by [Coodesh](https://coodesh.com/)

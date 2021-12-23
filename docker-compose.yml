@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./packages/app
+    environment:
+      NODE_ENV: production
+      REACT_APP_SERVER_URL: http://localhost:8000
+    ports:
+      - 3000:3000
+  backend:
+    build: ./packages/server
+    environment:
+      NODE_ENV: production
+      MONGO_URL: mongodb+srv://admin:coodesh_test@spaceflight.rvbhk.mongodb.net/SpaceFlight?retryWrites=true&w=majority
+      ALLOWED_ORIGIN: http://localhost:3000
+    ports:
+      - 8000:8000
